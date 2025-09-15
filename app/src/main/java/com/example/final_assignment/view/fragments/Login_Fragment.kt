@@ -18,7 +18,9 @@ import com.example.final_assignment.viewModel.LoginViewModel
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 import androidx.core.widget.addTextChangedListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Login_Fragment : Fragment() {
 
     private val vm: LoginViewModel by viewModels()

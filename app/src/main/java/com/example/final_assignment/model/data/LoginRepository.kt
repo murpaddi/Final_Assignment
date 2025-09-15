@@ -1,10 +1,13 @@
 package com.example.final_assignment.model.data
 
-import com.example.final_assignment.model.network.RetrofitInstance
+import com.example.final_assignment.model.network.ApiService
+import javax.inject.Inject
 
-class LoginRepository {
+class LoginRepository @Inject constructor(
+    private val api: ApiService
+) {
     suspend fun login(username: String, password: String): Result<String> = try {
-        val resp = RetrofitInstance.apiService.login(LoginRequest(username, password))
+        val resp = api.login(LoginRequest(username, password))
         if (!resp.keypass.isNullOrBlank()) Result.success(resp.keypass)
         else Result.failure(IllegalStateException("Missing Keypass"))
     } catch (e: retrofit2.HttpException) {

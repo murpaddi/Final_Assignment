@@ -15,9 +15,11 @@ import com.example.final_assignment.R
 import com.example.final_assignment.model.data.Book
 import com.example.final_assignment.view.adapter.BookAdapter
 import com.example.final_assignment.viewModel.DashboardViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class Dashboard_Fragment : Fragment() {
 
     private val viewModel: DashboardViewModel by viewModels()
