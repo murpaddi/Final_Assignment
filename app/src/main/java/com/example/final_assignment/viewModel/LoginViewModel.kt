@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.final_assignment.model.data.LoginRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel (
-    private val repo: LoginRepository = LoginRepository()
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val repository: LoginRepository
 ) : ViewModel() {
 
     // emits the keypass on success. null is no success yet.
@@ -35,7 +38,7 @@ class LoginViewModel (
         _errorState.value = null
 
         viewModelScope.launch {
-            val result = repo.login(username, password)
+            val result = repository.login(username, password)
             result.onSuccess { key -> _keypassState.value = key }
             result.onFailure { e -> _errorState.value = e.message ?: "Login failed." }
             _loadingState.value=false

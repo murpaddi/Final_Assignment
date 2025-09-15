@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import com.example.final_assignment.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Details_Fragment : Fragment() {
 
     private val args: Details_FragmentArgs by navArgs()
